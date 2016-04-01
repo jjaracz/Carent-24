@@ -12,5 +12,14 @@
  */
 
 return array(
-    // ...
+    'db' => array(
+         'driver' => 'Pdo_Mysql',
+         'username' => 'root',
+         'password' => '',
+         'hostname' => 'localhost',
+         'database' => 'carent',
+         'driver_options' => array(
+             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+         ),
+     ),
 );
