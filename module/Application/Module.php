@@ -17,9 +17,32 @@ use Zend\Db\Adapter\Adapter as DbAdapter;
 class Module {
 
     public function onBootstrap(MvcEvent $e) {
+        $application    = $e->getApplication();
+        
         $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        
+        $serviceManager = $application->getServiceManager();
+        $environment    = $serviceManager->get('Twig_Environment');
+        /** @var \ZfcTwig\moduleOptions $options */
+        $options = $serviceManager->get('ZfcTwig\ModuleOptions');
+        
+        foreach ($options->getExtensions() as $extension) {
+	    // Allows modules to override/remove extensions.
+	    if (empty($extension)) {
+	        continue;
+	    } else if (is_string($extension)) {
+                if ($serviceManager->has($extension)) {
+                    $extension = $serviceManager->get($extension);
+                } else {
+                    $extension = new $extension();
+                }
+            } elseif (!is_object($extension)) {
+                throw new InvalidArgumentException('Extensions should be a string or object.');
+            }
+            $environment->addExtension($extension);
+        }
     }
 
     public function getServiceConfig() {
