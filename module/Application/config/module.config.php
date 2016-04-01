@@ -88,7 +88,7 @@ return array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.twig',
             'application/index/index' => __DIR__ . '/../view/application/index/index.twig',
             'error/404'               => __DIR__ . '/../view/error/404.twig',
-            'error/index'             => __DIR__ . '/../view/error/index.twig',
+            'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
@@ -167,4 +167,10 @@ return array(
     /**
      * Register the view strategy with the view manager. This is required!
      */
+    'auth' => array(
+        'user_table' => 'users',
+        'identity_column' => 'username',
+        'credential_column' => 'password',
+        'additionals' => 'MD5(?)'
+    ),
 );

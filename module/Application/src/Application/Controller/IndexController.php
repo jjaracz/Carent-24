@@ -11,11 +11,35 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Application\Model\User\Form\UserLoginForm;
+use Application\Model\User\Form\InputFilter\UserLoginInputFilterFactory;
+use Application\Model\User\Authorization\Authorization;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $form = new UserLoginForm();
+        
+        $request = $this->getRequest();
+        
+        if($request->isPost()){
+            $data = $request->getPost();
+           
+            $form->setInputFilter(UserLoginInputFilterFactory::createInputFilter());
+            $form->setData($data);
+            
+            if($form->isValid()){
+                $authorization = new Authorization();
+                
+                $authorization->setAuthAdapter($this->getServiceLocator()->get('LoginService'));
+                
+                $result = $authorization->login('test', 'test');
+                
+                var_dump($result);
+            }
+        }
+        
+        return new ViewModel(array('form' => $form));
     }
 }

@@ -2,11 +2,7 @@
 
 namespace Application\Model\User\Entity;
 
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
-
-abstract class AbstractUser implements InputFilterAwareInterface {
+abstract class AbstractUser {
     protected $id;
     protected $login;
     protected $password;
@@ -68,13 +64,5 @@ abstract class AbstractUser implements InputFilterAwareInterface {
         ($data['email'] != null) ? $this->setEmail($data['email']) : null;
         ($data['permission'] != null) ? $this->setPermission($data['permission']) : null;
         ($data['created'] != null) ? $this->setCreated($data['created']) : null;
-    }
-    
-    public function setInputFilter(InputFilterInterface $inputFilter) {
-        $this->inputFilter = $inputFilter;
-    }
-    
-    public function getInputFilter(){
-        return $this->inputFilter;
     }
 }

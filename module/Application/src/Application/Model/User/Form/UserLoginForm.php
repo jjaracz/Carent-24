@@ -2,6 +2,8 @@
 
 namespace Application\Model\User\Form;
 
+use Zend\Form\Form;
+
 class UserLoginForm extends Form {
     public function __construct() {
         parent::__construct('UserLoginForm');

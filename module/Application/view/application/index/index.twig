@@ -1,4 +1,24 @@
 {% extends 'layout/layout.twig' %}
 {% block content %}
-{{ translate('Follow Developmdent') }}
+    <div class="row container">
+        <div class="row">
+            {{ form().openTag(form) }}
+            <div class="row">
+                <div class="input-field col s6">
+                    {{ formRow(form.get('login')) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    {{ formRow(form.get('password')) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    {{ formSubmit(form.get('submit')) }}
+                </div>
+            </div>
+            {{ form().closeTag() }}
+        </div>
+    </div>
 {% endblock content %}
