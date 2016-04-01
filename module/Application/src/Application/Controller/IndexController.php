@@ -22,12 +22,19 @@ class IndexController extends AbstractActionController
         $form = new UserLoginForm();
         
         $request = $this->getRequest();
+        $form->get('login')->setLabel("test");
+        $label = $form->get('login')->getLabel();
+        $form->get('login')->setOptions(array(
+            'label_class' => array('class' => 'control-label')
+        ));
         
         if($request->isPost()){
             $data = $request->getPost();
            
             $form->setInputFilter(UserLoginInputFilterFactory::createInputFilter());
             $form->setData($data);
+            
+            
             
             if($form->isValid()){
                 $authorization = new Authorization();
