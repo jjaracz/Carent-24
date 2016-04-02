@@ -169,7 +169,7 @@ return array(
      */
     'auth' => array(
         'user_table' => 'users',
-        'identity_column' => 'username',
+        'identity_column' => 'login',
         'credential_column' => 'password',
         'additionals' => 'MD5(?)'
     ),

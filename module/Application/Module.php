@@ -16,6 +16,8 @@ use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\Session\Config\SessionConfig;
 use Zend\Session\Container;
 use Zend\Session\SessionManager;
+use Zend\Config\Config;
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 
 class Module {
 

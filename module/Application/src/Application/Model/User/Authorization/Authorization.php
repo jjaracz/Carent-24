@@ -4,7 +4,7 @@ namespace Application\Model\User\Authorization;
 
 use Application\Model\User\Authorization\AbstractAuthorizationStrategy;
 use Application\Model\User\Authorization\DefaultAuthorizationStrategy;
-use Zend\Db\Adapter\Adapter as DbAdapter;
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 use Application\Model\User\Factory\AbstractUserFactory;
 use Application\Model\User\Factory\UserFactory;
 
@@ -17,7 +17,7 @@ class Authorization {
         $this->authStrategy = $strategy;
     }
     
-    public function setAuthAdapter(DbAdapter $adapter){
+    public function setAuthAdapter(AuthAdapter $adapter){
         $this->dbAdapter = $adapter;
     }
     

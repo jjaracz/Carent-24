@@ -5,6 +5,7 @@ namespace Application\Model\User\Authorization;
 use Application\Model\User\Authorization\AuthorizationInterface;
 use Zend\Session\Container;
 use Application\Model\User\Factory\AbstractUserFactory;
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 
 abstract class AbstractAuthorizationStrategy implements AuthorizationInterface {
     private $authAdapter;
@@ -15,10 +16,10 @@ abstract class AbstractAuthorizationStrategy implements AuthorizationInterface {
             throw new Exception("Nie ustawiono adaptera!");
         }
         
-        $this->adapter->setIdentity($identity);
-        $this->adapter->setCredential($credential);
+        $this->authAdapter->setIdentity($identity);
+        $this->authAdapter->setCredential($credential);
         
-        $result = $this->adapter->authenticate();
+        $result = $this->authAdapter->authenticate();
 
         if($result->isValid()){       
             $container = new Container('user');
