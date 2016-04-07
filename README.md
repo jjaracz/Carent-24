@@ -18,3 +18,10 @@ Tylko zrób kopię.
 
 Kontolery
 ---------------------------
+
+IndexController
+---------------------------
+
+Zwracam :
+``` form ``` - obiekt formularza.
+``` result ``` - Wynik logowania (string)
